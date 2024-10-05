@@ -1,0 +1,15 @@
+this sites helps me to set each part
+
+
+DOCKER                   https://medium.com/powered-by-django/deploy-django-using-docker-compose-windows-3068f2d981c4
+
+
+
+
+TRANSLATE                https://dev.to/doridoro/adding-translation-to-django-portfolio-project-4g42
+                         https://www.freecodecamp.org/news/localize-django-app/
+
+
+
+DJANGO-ALLAUTH           https://learndjango.com/tutorials/django-allauth-tutorial
+DJANGO-ALLAUTH-PROFILE   http://127.0.0.1:8000/accounts/profile/

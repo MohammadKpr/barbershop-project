@@ -1,0 +1,79 @@
+{% load static %}
+{% load i18n %}
+
+<!doctype html>
+<html dir='auto'>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
+
+    <title>
+        {% block title %}
+            
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand">
+            <img src="{% static 'icons/barber.avif' %}" alt="" height="80" 
+            class="d-inline-block align-text-top">
+        </a>
+        <a class="navbar-brand mx-3">BARBER&nbsp;&nbsp;&nbsp;</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="{% url 'home_page' %}">{% trans 'Home' %}</a>
+                <a class="nav-link active" href="{% url 'barber_page' %}">{% trans 'Barbers' %}</a>
+                <a class="nav-link active" href="{% url 'service_page' %}">{% trans 'Services' %}</a>
+                <a class="nav-link active" href="{% url 'about_us' %}">{% trans 'About' %}</a>
+            </div>
+        </div>
+        
+        <div>
+            {% if user.is_authenticated %}
+                <a class="link-light text-decoration-none" href="{% url 'account_logout' %}">{% trans 'Logout' %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            {% else %} 
+                <a class="link-light text-decoration-none" href="{% url 'account_login' %}">{% trans 'Login' %} {% trans '-' %}</a>
+                <a class="link-light text-decoration-none" href="{% url 'account_signup' %}">{% trans 'Signup' %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            {% endif %}
+        </div>
+        <div>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}" />
+                <select class="btn btn-light mt-2 w-10 shadow" name="language">
+                    <option value="en">En</option>
+                    <option value="fa">Fa</option>
+                </select>
+                <input  class="btn btn-light mt-2 w-10" type="submit" value='{% trans "Change" %}'>
+            </form>
+        </div>
+    </div>
+    </nav>
+
+
+    {% block body %}
+            
+    {% endblock body %}
+    
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+-->
+</body>
+</html>

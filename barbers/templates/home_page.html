@@ -1,0 +1,93 @@
+{% extends '_base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    {% trans 'Home' %}
+{% endblock title %}
+
+
+
+{% block body %}
+<!--? About Area Start -->
+    <div><br></div>
+    <section class="about-area section-padding30 position-relative">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-11">
+                    <!-- about-img -->
+                    <div class="about-img ">
+                        <img src="{% static 'icons/barber.avif' %}" alt="barbershop logo">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="about-caption">
+                        <!-- Section Tittle -->
+                        <div class="section-tittle text-center mb-90">
+                            <h4 >{% trans 'About Our Barbershop' %}</h4>
+                            <h2><b>{% trans '52 Years Of Experience In Hair cut!' %}</b></h2><br>
+                        </div>
+                        <div>
+                            <p>{{barber_shop.description | truncatewords:40}}</p><br>
+                            <h4><b>{% trans 'Located On' %}</b></h4><h5>{{barber_shop.address}}</h5><br>
+                            <h4><b>{% trans 'Phone Number' %}</b></h4><h5>{{barber_shop.phone_number}}</h5><br>
+                            <h4><b>{% trans 'Working Days' %}</b></h4><h6>{{barber_shop.get_working_days_display}}</h6><h5>{{barber_shop.working_time}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- About-2 Area End -->
+
+<!--? Services Area Start -->
+<div>
+    <br><br>
+</div>
+<section class="service-area section-padding30">
+    <div class="container">
+        <!-- Section Tittle -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-11 col-sm-11">
+                <div class="section-tittle text-center mb-90">
+                    <h2><b>{% trans 'some images from our barber shop' %}</b></h2><br>
+                </div>
+            </div>
+        </div>
+        <!-- Section caption -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="services-caption text-center mb-30">
+                    <div class="service-icon">
+                        <i class="flaticon-healthcare-and-medical"></i>
+                    </div> 
+                    <div class="service-cap">
+                    </div>
+                </div>
+            </div> 
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="services-caption active text-center mb-30">
+                    <div class="service-icon">
+                        <i class="flaticon-fitness"></i>
+                    </div> 
+                    <div class="service-cap">         
+                        {% for picture in pictures %}
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{picture.image.url}}" class="d-block w-100" alt="image"><br>
+                                    <div class="carousel-caption d-none d-md-block">
+                                    </div>
+                                </div>
+                            </div>                             
+                        {% endfor %}      
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</section>
+<!-- Services Area End -->
+
+{% endblock body %}
+    

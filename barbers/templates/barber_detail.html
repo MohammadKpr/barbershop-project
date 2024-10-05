@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+{% load i18n %}
+
+
+{% block title %}
+    {% trans 'barber comments' %}
+{% endblock title %}
+
+{% block body %}
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-6">
+        <div class="services-caption text-center mb-30">
+            <div class="service-icon">
+                <i class="flaticon-healthcare-and-medical"></i>
+            </div> 
+            <div class="service-cap">
+            </div>
+        </div>
+    </div> 
+    <div class="">
+        <div class="services-caption active text-center mb-30">
+            <div class="service-icon">
+                <i class="flaticon-fitness"></i>
+            </div> 
+            <div class="service-cap"><br><br><br>
+                <h2>{% trans 'your comments about' %}  {{barber.name}}<h2><br>
+                {% for barber_comment in barber_comments %}
+                <h5>{{barber_comment.text}}</h5><br>
+            {% endfor %}
+            </div>
+        </div>
+    </div> 
+</div>
+
+{% endblock body %}
+
+    
